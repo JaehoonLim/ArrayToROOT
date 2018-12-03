@@ -4,7 +4,7 @@ import numpy
 class TwoDArrayToROOT:
 
 #
-# for savring 2-D array to ROOT file
+# for saving 2-D array to ROOT file
 #
 # ex1) array = [ [a1, b1, c1, ...],
 #                [a2, b2, c2, ...],
@@ -60,7 +60,6 @@ class TwoDArrayToROOT:
         print('SetTreeNane : {0}'.format(treename))
 
     def Fill(self, arraytype, array, arrayname=None):
-        #print('Array type : {0}'.format(arraytype))
         if arraytype=='R':
             n_evt = array.shape[0]
             n_val = array.shape[1]
@@ -99,6 +98,18 @@ class TwoDArrayToROOT:
         print('Tree \'{0}\' Saved'.format(self.ttree.GetName()))
 
 class ROOTToTwoDArray:
+
+#
+# for loading 2-D array form ROOT file
+#
+# ex)
+#
+# from ArrayToRoot import ROOTToTwoDArray
+#
+# loadroot = ROOTToTwoDArray('WGAN_data.root')
+# loadroot.SetTreeName('FakeData')
+# test_array = loadroot.ReadRow(['P1_pz','P1_px','TEST'])
+#
 
     def __init__(self,filename=None):
         if filename != None:
@@ -143,6 +154,7 @@ class ROOTToTwoDArray:
         else:
             print("ARRAY TYPE ERROR")
             exit()       
+
         for i_evt in range(n_evt):
             self.ttree.GetEntry(i_evt)
             for i_val in range(n_val):
