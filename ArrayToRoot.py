@@ -30,10 +30,10 @@ class TwoDArrayToROOT:
 #
 # output ex)
 #
-# SetFileNane : WGAN_data.root
-# SetTreeNane : RealData
+# SetFileName : WGAN_data.root
+# SetTreeName : RealData
 # Tree 'RealData' Saved
-# SetTreeNane : FakeData
+# SetTreeName : FakeData
 # Tree 'FakeData' Saved
 #
 # [output_path]$ root WGAN_data.root 
@@ -53,11 +53,11 @@ class TwoDArrayToROOT:
 
     def SetFileName(self, filename, filetype='RECREATE'):
         self.tfile = TFile(filename, filetype)
-        print('SetFileNane : {0}'.format(filename))
+        print('SetFileName : {0}'.format(filename))
 
     def SetTreeName(self, treename, treehelp=''):
         self.ttree = TTree(treename,treehelp)
-        print('SetTreeNane : {0}'.format(treename))
+        print('SetTreeName : {0}'.format(treename))
 
     def Fill(self, arraytype, array, arrayname=None):
         if arraytype=='R':
@@ -117,11 +117,11 @@ class ROOTToTwoDArray:
 
     def SetFileName(self, filename):
         self.tfile = TFile(filename, 'READ')
-        print('SetFileNane : {0}'.format(filename))
+        print('SetFileName : {0}'.format(filename))
 
     def SetTreeName(self, treename):
         self.ttree = self.tfile.Get(treename) 
-        print('SetTreeNane : {0}'.format(treename))
+        print('SetTreeName : {0}'.format(treename))
 
     def Read(self, arraytype, arrayname=None):
         n_evt = self.ttree.GetEntries()
